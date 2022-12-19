@@ -1,3 +1,35 @@
+@import 'components/Variable.scss';
+@import 'components/header.scss';
+@import 'components/datauser.scss';
+@import 'components/food.scss';
+
 body{
-    background: rgb(14, 184, 65);
+    background: $bodyColor;
 }
+
+
+.containerApp{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+Main{
+    flex: 1;
+}
+
+
+.doughnut{
+    width:200px;
+    margin: auto;
+    position: relative;
+    .kcal{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%);
+
+    }
+}
+
