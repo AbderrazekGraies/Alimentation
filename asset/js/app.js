@@ -32,6 +32,7 @@
   });
 
 
+
 function sliderChangeHeight(val) {
     document.getElementById("outputHeight").innerHTML = val;
 }
@@ -45,3 +46,46 @@ function sliderChangeWeight(val) {
 
 
 document.getElementById("weight").value = 70;
+
+
+
+
+function addPlate(){
+
+  //getting food and calories values
+  var food=document.getElementById("food").value;
+  var calorie=document.getElementById("calorie").value;
+
+
+  //create container row and food divs
+  var titlefoodDiv=document.createElement("div");
+  titlefoodDiv.classList.add("titlefood");
+  titlefoodDiv.getElementsByTagName("h3");
+  titlefoodDiv.innerHTML=food;
+
+  var kgFoodDiv=document.createElement("div");
+  kgFoodDiv.classList.add("kgFood");
+  kgFoodDiv.innerHTML=calorie;
+
+  var foodDiv=document.createElement("div");
+  foodDiv.classList.add("food");
+  foodDiv.appendChild(titlefoodDiv);
+  foodDiv.appendChild(kgFoodDiv);
+
+  var colDiv=document.createElement("div");
+  colDiv.classList.add("col");
+  colDiv.appendChild(foodDiv);
+
+  var rowDiv=document.createElement("div");
+  rowDiv.classList.add("row");
+  rowDiv.appendChild(colDiv);
+
+  var containerDiv=document.createElement("div");
+  containerDiv.classList.add("container");
+  containerDiv.appendChild(rowDiv);
+
+  var ListDiv = document.getElementById("List");
+  ListDiv.appendChild(containerDiv);
+
+
+}
