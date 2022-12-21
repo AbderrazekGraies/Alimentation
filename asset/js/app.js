@@ -1,7 +1,7 @@
 
   const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
+  var Chart=new Chart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Big Mac', 'Pin au Chocolat', 'Patte Carbonara',],
@@ -13,9 +13,12 @@
         backgroundColor: [
             "#FF5E5B",
             "#D8D8D8",
-            "green",
+            "#000000",
             "#00CECB",
             "#FFED66",
+            "purple",
+            "pink",
+            "yellow",
           ],
       }]
     },
@@ -58,34 +61,44 @@ function addPlate(){
 
 
   //create container row and food divs
-  var titlefoodDiv=document.createElement("div");
-  titlefoodDiv.classList.add("titlefood");
-  titlefoodDiv.getElementsByTagName("h3");
-  titlefoodDiv.innerHTML=food;
+  if(food!="" && calorie!=""){
+    var titlefoodDiv=document.createElement("div");
+    titlefoodDiv.classList.add("titlefood");
+    titlefoodDiv.innerHTML="<h3>"+food+"</h3>";
 
-  var kgFoodDiv=document.createElement("div");
-  kgFoodDiv.classList.add("kgFood");
-  kgFoodDiv.innerHTML=calorie;
+    var kgFoodDiv=document.createElement("div");
+    kgFoodDiv.classList.add("kgFood");
+    kgFoodDiv.innerHTML=calorie;
 
-  var foodDiv=document.createElement("div");
-  foodDiv.classList.add("food");
-  foodDiv.appendChild(titlefoodDiv);
-  foodDiv.appendChild(kgFoodDiv);
+    var foodDiv=document.createElement("div");
+    foodDiv.classList.add("food");
+    foodDiv.appendChild(titlefoodDiv);
+    foodDiv.appendChild(kgFoodDiv);
 
-  var colDiv=document.createElement("div");
-  colDiv.classList.add("col");
-  colDiv.appendChild(foodDiv);
+    var colDiv=document.createElement("div");
+    colDiv.classList.add("col");
+    colDiv.appendChild(foodDiv);
 
-  var rowDiv=document.createElement("div");
-  rowDiv.classList.add("row");
-  rowDiv.appendChild(colDiv);
+    var rowDiv=document.createElement("div");
+    rowDiv.classList.add("row");
+    rowDiv.appendChild(colDiv);
 
-  var containerDiv=document.createElement("div");
-  containerDiv.classList.add("container");
-  containerDiv.appendChild(rowDiv);
+    var containerDiv=document.createElement("div");
+    containerDiv.classList.add("container");
+    containerDiv.appendChild(rowDiv);
 
-  var ListDiv = document.getElementById("List");
-  ListDiv.appendChild(containerDiv);
+    var ListDiv = document.getElementById("List");
+    ListDiv.appendChild(containerDiv);
 
+    //update the chart
+    //add label
+    Chart.data.labels.push(food);
+    //add data
+    Chart.data.datasets.forEach((dataset) => {
+      dataset.data.push(calorie);
+    });
+    //finally update
+    Chart.update();
+  }
 
 }
