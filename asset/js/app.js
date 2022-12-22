@@ -4,10 +4,10 @@
   var Chart=new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Big Mac', 'Pin au Chocolat', 'Patte Carbonara',],
+      labels: [],
       datasets: [{
         label: '',
-        data: [400,250,1200],
+        data: [],
         borderWidth: false,
         hoverOffset:20,
         backgroundColor: [
@@ -66,6 +66,9 @@ function addPlate(){
     titlefoodDiv.classList.add("titlefood");
     titlefoodDiv.innerHTML="<h3>"+food+"</h3>";
 
+    var locationtoAdd=document.getElementById(".doughnut>kcal");
+    var totalCalories=0;
+
     var kgFoodDiv=document.createElement("div");
     kgFoodDiv.classList.add("kgFood");
     kgFoodDiv.innerHTML=calorie;
@@ -99,6 +102,20 @@ function addPlate(){
     });
     //finally update
     Chart.update();
+
+    
   }
 
+}
+
+
+function removePlate(){
+
+  var ListDiv = document.getElementById("List");
+  var firstChild = ListDiv.firstElementChild;
+  firstChild.remove();
+
+  Chart.data.labels.shift();
+  Chart.data.datasets[0].data.shift();
+  Chart.update();
 }
